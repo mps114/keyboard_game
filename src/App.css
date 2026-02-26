@@ -32,7 +32,7 @@ body {
   font-weight: 700;
 }
 
-.level-badge {
+.attempts-badge {
   background: #4fc3f7;
   color: #1a1a1d;
   padding: 0.25rem 0.75rem;
@@ -46,7 +46,7 @@ body {
   gap: 0.5rem;
   margin-top: 1.5rem;
   width: 100%;
-  max-width: 360px;
+  max-width: 560px;
   cursor: text;
 }
 
@@ -128,11 +128,55 @@ body {
   cursor: not-allowed;
 }
 
-.correct-feedback {
-  margin-top: 1rem;
+.solved-feedback {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.solved-feedback p {
   font-size: 1.25rem;
   font-weight: 700;
   color: #66bb6a;
+  margin-bottom: 1rem;
+}
+
+.attempts-history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 560px;
+}
+
+.history-row {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.55rem 0.75rem;
+  border: 2px solid #252528;
+  border-radius: 8px;
+  background: #1e1e22;
+}
+
+.history-slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 1.5rem;
+  border-bottom: 2px solid #444;
+  color: #666;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.history-slot-space {
+  width: 10px;
+}
+
+.letter-slot-space {
+  width: 10px;
 }
 
 .game-over {

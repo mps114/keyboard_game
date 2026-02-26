@@ -1,17 +1,17 @@
 interface GameOverProps {
   correctWord: string
-  level: number
+  attemptsUsed: number
   onRestart: () => void
 }
 
-export default function GameOver({ correctWord, level, onRestart }: GameOverProps) {
+export default function GameOver({ correctWord, attemptsUsed, onRestart }: GameOverProps) {
   return (
     <div className="game-over">
-      <h2>Wrong!</h2>
+      <h2>Game Over</h2>
       <p>
-        The word was <strong>{correctWord}</strong>
+        The answer was <strong>{correctWord}</strong>
       </p>
-      <p className="game-over-level">You reached level {level}</p>
+      <p className="game-over-level">Used all {attemptsUsed} attempts</p>
       <button className="restart-button" onClick={onRestart}>
         Try Again
       </button>

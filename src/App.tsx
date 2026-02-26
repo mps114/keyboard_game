@@ -2,8 +2,10 @@ import { useState, useCallback } from 'react'
 import Keyboard, { DotMode } from './components/Keyboard'
 import GuessInput from './components/GuessInput'
 import GameOver from './components/GameOver'
-import { pickRandomWord } from './data/words'
+import { pickChallengeWord } from './data/words'
 import './App.css'
+
+const MAX_ATTEMPTS = 5
 
 const DOT_OPTIONS: { value: DotMode; label: string }[] = [
   { value: 'all', label: 'All dots' },
@@ -13,42 +15,42 @@ const DOT_OPTIONS: { value: DotMode; label: string }[] = [
 ]
 
 export default function App() {
-  const [level, setLevel] = useState(1)
-  const [word, setWord] = useState(() => pickRandomWord(1))
-  const [gameOver, setGameOver] = useState(false)
-  const [correctFeedback, setCorrectFeedback] = useState(false)
+  const [word, setWord] = useState(() => pickChallengeWord())
+  const [attempts, setAttempts] = useState<string[]>([])
+  const [solved, setSolved] = useState(false)
   const [dotMode, setDotMode] = useState<DotMode>('all')
-  const [guess, setGuess] = useState('')
+  const [guess, setGuess] = useState<string[]>([])
+
+  const gameOver = !solved && attempts.length >= MAX_ATTEMPTS
+  const remaining = MAX_ATTEMPTS - attempts.length
 
   const handleGuess = useCallback(
-    (guess: string) => {
-      if (guess === word) {
-        setCorrectFeedback(true)
-        setTimeout(() => {
-          const nextLevel = level + 1
-          setLevel(nextLevel)
-          setWord(pickRandomWord(nextLevel))
-          setCorrectFeedback(false)
-          setGuess('')
-        }, 800)
+    (fullGuess: string) => {
+      if (fullGuess === word) {
+        setSolved(true)
       } else {
-        setGameOver(true)
+        setAttempts((prev) => [...prev, fullGuess])
       }
     },
-    [word, level],
+    [word],
   )
 
   const handleRestart = useCallback(() => {
-    setLevel(1)
-    setWord(pickRandomWord(1))
-    setGameOver(false)
+    setWord(pickChallengeWord())
+    setAttempts([])
+    setSolved(false)
+    setGuess([])
   }, [])
 
   return (
     <div className="app">
       <header className="header">
         <h1>Keyboard Game</h1>
-        <span className="level-badge">Level {level}</span>
+        {!solved && !gameOver && (
+          <span className="attempts-badge">
+            {remaining} / {MAX_ATTEMPTS}
+          </span>
+        )}
       </header>
 
       <Keyboard word={word} dotMode={dotMode} />
@@ -65,19 +67,44 @@ export default function App() {
         ))}
       </div>
 
+      {attempts.length > 0 && (
+        <div className="attempts-history">
+          {attempts.map((attempt, i) => (
+            <div key={i} className="history-row">
+              {word.split('').map((ch, j) =>
+                ch === ' ' ? (
+                  <span key={j} className="history-slot-space" />
+                ) : (
+                  <span key={j} className="history-slot">
+                    {attempt[j]}
+                  </span>
+                ),
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
       {gameOver ? (
-        <GameOver correctWord={word} level={level} onRestart={handleRestart} />
+        <GameOver correctWord={word} attemptsUsed={attempts.length} onRestart={handleRestart} />
+      ) : solved ? (
+        <div className="solved-feedback">
+          <p>
+            Correct! Got it in {attempts.length + 1}{' '}
+            {attempts.length + 1 === 1 ? 'try' : 'tries'}!
+          </p>
+          <button className="restart-button" onClick={handleRestart}>
+            Play Again
+          </button>
+        </div>
       ) : (
-        <>
-          {correctFeedback && <p className="correct-feedback">Correct!</p>}
-          <GuessInput
-            onGuess={handleGuess}
-            disabled={correctFeedback}
-            letterCount={word.length}
-            value={guess}
-            onChange={setGuess}
-          />
-        </>
+        <GuessInput
+          onGuess={handleGuess}
+          disabled={false}
+          wordTemplate={word}
+          slots={guess}
+          onSlotsChange={setGuess}
+        />
       )}
     </div>
   )

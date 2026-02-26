@@ -29,6 +29,11 @@
   font-family: 'SF Mono', 'Fira Code', monospace;
 }
 
+.key-spacebar {
+  width: 294px;
+  height: 54px;
+}
+
 .keyboard-svg {
   position: absolute;
   top: 0;

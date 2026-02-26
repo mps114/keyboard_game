@@ -5,6 +5,7 @@ import keyPositions, {
   KEY_GAP,
   KEYBOARD_WIDTH,
   KEYBOARD_HEIGHT,
+  SPACEBAR_WIDTH,
 } from '../utils/keyboardLayout'
 import './Keyboard.css'
 
@@ -35,6 +36,13 @@ export default function Keyboard({ word, dotMode = 'all' }: KeyboardProps) {
             ))}
           </div>
         ))}
+
+        <div
+          className="keyboard-row"
+          style={{ paddingLeft: (KEYBOARD_WIDTH - SPACEBAR_WIDTH) / 2 }}
+        >
+          <div className="key key-spacebar" />
+        </div>
 
         <svg
           className="keyboard-svg"

@@ -31,6 +31,13 @@ rows.forEach((row, rowIndex) => {
 export const KEYBOARD_ROWS = rows
 export const ROW_OFFSETS = rowOffsets
 export const KEYBOARD_WIDTH = 10 * (KEY_WIDTH + KEY_GAP) - KEY_GAP
-export const KEYBOARD_HEIGHT = 3 * ROW_HEIGHT - KEY_GAP
+export const KEYBOARD_HEIGHT = 4 * ROW_HEIGHT - KEY_GAP
+export const SPACEBAR_WIDTH = 5 * KEY_WIDTH + 4 * KEY_GAP
+
+keyPositions[' '] = {
+  x: KEYBOARD_WIDTH / 2,
+  y: 3 * ROW_HEIGHT + KEY_HEIGHT / 2,
+}
+
 export { KEY_WIDTH, KEY_HEIGHT, KEY_GAP, ROW_HEIGHT }
 export default keyPositions
