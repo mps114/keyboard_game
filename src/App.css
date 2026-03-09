@@ -311,6 +311,8 @@ body {
 
 .intro-modal {
   width: min(560px, 100%);
+  max-height: min(86vh, 720px);
+  overflow-y: auto;
   background: #ffffff;
   border-radius: 16px;
   padding: 1.75rem;
@@ -439,5 +441,33 @@ body {
 
   .dot-option-btn {
     font-size: 0.75rem;
+  }
+
+  .intro-modal {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+
+  .intro-modal h2 {
+    font-size: 1.3rem;
+  }
+
+  .intro-modal p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro-example {
+    margin-top: -0.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro-demo .keyboard-frame {
+    --keyboard-scale: 0.55;
+  }
+
+  .intro-close {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.4rem;
   }
 }
