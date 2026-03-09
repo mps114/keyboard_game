@@ -5,10 +5,11 @@
 }
 
 body {
-  background: #1a1a1d;
-  color: #e0e0e0;
+  background: #f6f7f8;
+  color: #1f2328;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .app {
@@ -33,8 +34,8 @@ body {
 }
 
 .attempts-badge {
-  background: #4fc3f7;
-  color: #1a1a1d;
+  background: #6aaa64;
+  color: #ffffff;
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
   font-size: 0.85rem;
@@ -56,14 +57,14 @@ body {
   gap: 0.4rem;
   flex: 1;
   padding: 0.55rem 0.75rem;
-  border: 2px solid #3a3a3e;
+  border: 2px solid #d3d6da;
   border-radius: 8px;
-  background: #2a2a2e;
+  background: #ffffff;
   transition: border-color 0.2s;
 }
 
 .guess-form:focus-within .letter-slots-input {
-  border-color: #4fc3f7;
+  border-color: #6aaa64;
 }
 
 .letter-slot-input {
@@ -72,15 +73,15 @@ body {
   justify-content: center;
   width: 18px;
   height: 1.5rem;
-  border-bottom: 2px solid #555;
-  color: #e0e0e0;
+  border-bottom: 2px solid #d3d6da;
+  color: #1f2328;
   font-size: 1rem;
   font-weight: 600;
   font-family: 'SF Mono', 'Fira Code', monospace;
 }
 
 .letter-slot-cursor {
-  border-bottom-color: #4fc3f7;
+  border-bottom-color: #6aaa64;
 }
 
 .guess-input-hidden {
@@ -94,25 +95,25 @@ body {
 .guess-input {
   flex: 1;
   padding: 0.75rem 1rem;
-  border: 2px solid #3a3a3e;
+  border: 2px solid #d3d6da;
   border-radius: 8px;
-  background: #2a2a2e;
-  color: #e0e0e0;
+  background: #ffffff;
+  color: #1f2328;
   font-size: 1rem;
   outline: none;
   transition: border-color 0.2s;
 }
 
 .guess-input:focus {
-  border-color: #4fc3f7;
+  border-color: #6aaa64;
 }
 
 .guess-button {
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 8px;
-  background: #4fc3f7;
-  color: #1a1a1d;
+  background: #6aaa64;
+  color: #ffffff;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
@@ -120,7 +121,7 @@ body {
 }
 
 .guess-button:hover:not(:disabled) {
-  background: #81d4fa;
+  background: #7bb870;
 }
 
 .guess-button:disabled {
@@ -136,7 +137,7 @@ body {
 .solved-feedback p {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #66bb6a;
+  color: #6aaa64;
   margin-bottom: 1rem;
 }
 
@@ -153,9 +154,9 @@ body {
   display: flex;
   gap: 0.4rem;
   padding: 0.55rem 0.75rem;
-  border: 2px solid #252528;
+  border: 2px solid #e4e6eb;
   border-radius: 8px;
-  background: #1e1e22;
+  background: #ffffff;
 }
 
 .history-slot {
@@ -164,8 +165,8 @@ body {
   justify-content: center;
   width: 18px;
   height: 1.5rem;
-  border-bottom: 2px solid #444;
-  color: #666;
+  border-bottom: 2px solid #d3d6da;
+  color: #6b7280;
   font-size: 1rem;
   font-weight: 600;
   font-family: 'SF Mono', 'Fira Code', monospace;
@@ -186,7 +187,7 @@ body {
 
 .game-over h2 {
   font-size: 1.75rem;
-  color: #ef5350;
+  color: #d32f2f;
   margin-bottom: 0.5rem;
 }
 
@@ -196,7 +197,7 @@ body {
 }
 
 .game-over-level {
-  color: #888;
+  color: #8b949e;
   margin-bottom: 1rem !important;
 }
 
@@ -204,8 +205,8 @@ body {
   padding: 0.75rem 2rem;
   border: none;
   border-radius: 8px;
-  background: #ef5350;
-  color: white;
+  background: #d32f2f;
+  color: #ffffff;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
@@ -213,7 +214,7 @@ body {
 }
 
 .restart-button:hover {
-  background: #e57373;
+  background: #e25353;
 }
 
 .dot-options {
@@ -224,10 +225,10 @@ body {
 
 .dot-option-btn {
   padding: 0.35rem 0.85rem;
-  border: 2px solid #3a3a3e;
+  border: 2px solid #d3d6da;
   border-radius: 999px;
   background: transparent;
-  color: #888;
+  color: #6b7280;
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
@@ -235,11 +236,87 @@ body {
 }
 
 .dot-option-btn:hover {
-  border-color: #4fc3f7;
-  color: #e0e0e0;
+  border-color: #6aaa64;
+  color: #1f2328;
 }
 
 .dot-option-btn.active {
-  border-color: #4fc3f7;
-  color: #4fc3f7;
+  border-color: #6aaa64;
+  color: #6aaa64;
+}
+
+@media (max-width: 700px) {
+  .app {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .header h1 {
+    font-size: 1.35rem;
+  }
+
+  .guess-form {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .guess-button {
+    width: 100%;
+  }
+
+  .dot-options {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .app {
+    padding: 1.25rem 0.6rem;
+  }
+
+  .attempts-badge {
+    font-size: 0.8rem;
+  }
+
+  .letter-slots-input,
+  .history-row {
+    padding: 0.45rem 0.6rem;
+  }
+
+  .letter-slot-input,
+  .history-slot {
+    width: 16px;
+    font-size: 0.95rem;
+  }
+
+  .letter-slot-space,
+  .history-slot-space {
+    width: 8px;
+  }
+}
+
+@media (max-width: 420px) {
+  .header h1 {
+    font-size: 1.2rem;
+  }
+
+  .guess-input,
+  .guess-button {
+    font-size: 0.95rem;
+  }
+
+  .letter-slot-input,
+  .history-slot {
+    width: 14px;
+    font-size: 0.85rem;
+  }
+
+  .dot-option-btn {
+    font-size: 0.75rem;
+  }
 }

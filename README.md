@@ -9,7 +9,7 @@ Each round, lines are drawn between the keys of a hidden word in sequence. Figur
 1. Look at the path drawn on the keyboard
 2. Type your guess letter by letter into the slots
 3. Submit — wrong guesses are shown as history rows above the input
-4. Solve the word in 5 tries or fewer
+4. Solve the word in 3 tries or fewer
 
 Words include single words (e.g. `SPHINX`) and multi-word phrases (e.g. `HOT DOG`, `BIG BAD WOLF`). Spaces appear as gaps in the slot input.
 

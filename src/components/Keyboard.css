@@ -4,9 +4,18 @@
   margin: 2rem 0;
 }
 
+.keyboard-frame {
+  width: calc(var(--keyboard-width) * var(--keyboard-scale, 1));
+  height: calc(var(--keyboard-height) * var(--keyboard-scale, 1));
+  display: flex;
+  justify-content: center;
+}
+
 .keyboard {
   position: relative;
   user-select: none;
+  transform: scale(var(--keyboard-scale, 1));
+  transform-origin: top center;
 }
 
 .keyboard-row {
@@ -19,8 +28,9 @@
   width: 54px;
   height: 54px;
   border-radius: 8px;
-  background: #2a2a2e;
-  color: #e0e0e0;
+  background: #ffffff;
+  color: #1f2328;
+  border: 2px solid #d3d6da;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,22 +51,58 @@
   pointer-events: none;
 }
 
+.path-lines {
+  opacity: 0.6;
+}
+
 .path-line {
-  stroke: #4fc3f7;
-  stroke-opacity: 0.45;
-  stroke-width: 10;
+  stroke: #6aaa64;
+  stroke-opacity: 1;
+  stroke-width: 6;
   stroke-linecap: round;
-  filter: drop-shadow(0 0 6px rgba(79, 195, 247, 0.3));
+  filter: drop-shadow(0 0 4px rgba(106, 170, 100, 0.35));
 }
 
 .path-dot {
-  fill: #4fc3f7;
-  fill-opacity: 0.45;
-  filter: drop-shadow(0 0 4px rgba(79, 195, 247, 0.3));
+  fill: #6aaa64;
+  fill-opacity: 0.6;
+  filter: drop-shadow(0 0 4px rgba(106, 170, 100, 0.35));
 }
 
 .path-dot-start {
-  fill: #81d4fa;
-  fill-opacity: 0.45;
-  filter: drop-shadow(0 0 8px rgba(129, 212, 250, 0.4));
+  fill: #9ccc65;
+  fill-opacity: 0.7;
+  filter: drop-shadow(0 0 6px rgba(156, 204, 101, 0.4));
+}
+
+@media (max-width: 900px) {
+  .keyboard-container {
+    margin: 1.5rem 0;
+  }
+
+  .keyboard-frame {
+    --keyboard-scale: 0.9;
+  }
+}
+
+@media (max-width: 700px) {
+  .keyboard-frame {
+    --keyboard-scale: 0.8;
+  }
+}
+
+@media (max-width: 560px) {
+  .keyboard-frame {
+    --keyboard-scale: 0.7;
+  }
+}
+
+@media (max-width: 420px) {
+  .keyboard-frame {
+    --keyboard-scale: 0.6;
+  }
+
+  .keyboard-container {
+    margin: 1.25rem 0 1rem;
+  }
 }

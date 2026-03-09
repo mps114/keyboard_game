@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import keyPositions, {
   KEYBOARD_ROWS,
   ROW_OFFSETS,
@@ -22,69 +23,81 @@ export default function Keyboard({ word, dotMode = 'all' }: KeyboardProps) {
 
   return (
     <div className="keyboard-container">
-      <div className="keyboard" style={{ width: KEYBOARD_WIDTH, height: KEYBOARD_HEIGHT }}>
-        {KEYBOARD_ROWS.map((row, rowIndex) => (
+      <div
+        className="keyboard-frame"
+        style={
+          {
+            '--keyboard-width': `${KEYBOARD_WIDTH}px`,
+            '--keyboard-height': `${KEYBOARD_HEIGHT}px`,
+          } as CSSProperties
+        }
+      >
+        <div className="keyboard" style={{ width: KEYBOARD_WIDTH, height: KEYBOARD_HEIGHT }}>
+          {KEYBOARD_ROWS.map((row, rowIndex) => (
+            <div
+              key={rowIndex}
+              className="keyboard-row"
+              style={{ paddingLeft: ROW_OFFSETS[rowIndex] * (KEY_WIDTH + KEY_GAP) }}
+            >
+              {row.split('').map((key) => (
+                <div key={key} className="key">
+                  {key}
+                </div>
+              ))}
+            </div>
+          ))}
+
           <div
-            key={rowIndex}
             className="keyboard-row"
-            style={{ paddingLeft: ROW_OFFSETS[rowIndex] * (KEY_WIDTH + KEY_GAP) }}
+            style={{ paddingLeft: (KEYBOARD_WIDTH - SPACEBAR_WIDTH) / 2 }}
           >
-            {row.split('').map((key) => (
-              <div key={key} className="key">
-                {key}
-              </div>
-            ))}
+            <div className="key key-spacebar" />
           </div>
-        ))}
 
-        <div
-          className="keyboard-row"
-          style={{ paddingLeft: (KEYBOARD_WIDTH - SPACEBAR_WIDTH) / 2 }}
-        >
-          <div className="key key-spacebar" />
-        </div>
+          <svg
+            className="keyboard-svg"
+            width={KEYBOARD_WIDTH}
+            height={KEYBOARD_HEIGHT}
+            viewBox={`0 0 ${KEYBOARD_WIDTH} ${KEYBOARD_HEIGHT}`}
+          >
+          <g className="path-lines">
+            {points.length >= 2 &&
+              points.map((pos, i) => {
+                if (i === 0) return null
+                const prev = points[i - 1]
+                return (
+                  <line
+                    key={i}
+                    x1={prev.x}
+                    y1={prev.y}
+                    x2={pos.x}
+                    y2={pos.y}
+                    className="path-line"
+                  />
+                )
+              })}
+          </g>
 
-        <svg
-          className="keyboard-svg"
-          width={KEYBOARD_WIDTH}
-          height={KEYBOARD_HEIGHT}
-          viewBox={`0 0 ${KEYBOARD_WIDTH} ${KEYBOARD_HEIGHT}`}
-        >
-          {points.length >= 2 &&
-            points.map((pos, i) => {
-              if (i === 0) return null
-              const prev = points[i - 1]
+            {points.map((pos, i) => {
+              const isFirst = i === 0
+              const isLast = i === points.length - 1
+
+              if (dotMode === 'none') return null
+              if (dotMode === 'first' && !isFirst) return null
+              if (dotMode === 'first-last' && !isFirst && !isLast) return null
+
               return (
-                <line
+                <circle
                   key={i}
-                  x1={prev.x}
-                  y1={prev.y}
-                  x2={pos.x}
-                  y2={pos.y}
-                  className="path-line"
+                  cx={pos.x}
+                  cy={pos.y}
+                  r={isFirst ? 16 : 11}
+                  className={isFirst ? 'path-dot path-dot-start' : 'path-dot'}
                 />
               )
             })}
-
-          {points.map((pos, i) => {
-            const isFirst = i === 0
-            const isLast = i === points.length - 1
-
-            if (dotMode === 'none') return null
-            if (dotMode === 'first' && !isFirst) return null
-            if (dotMode === 'first-last' && !isFirst && !isLast) return null
-
-            return (
-              <circle
-                key={i}
-                cx={pos.x}
-                cy={pos.y}
-                r={isFirst ? 16 : 11}
-                className={isFirst ? 'path-dot path-dot-start' : 'path-dot'}
-              />
-            )
-          })}
-        </svg>
+          </svg>
+        </div>
       </div>
     </div>
   )

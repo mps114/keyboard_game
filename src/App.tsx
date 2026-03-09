@@ -5,7 +5,7 @@ import GameOver from './components/GameOver'
 import { pickChallengeWord } from './data/words'
 import './App.css'
 
-const MAX_ATTEMPTS = 5
+const MAX_ATTEMPTS = 3
 
 const DOT_OPTIONS: { value: DotMode; label: string }[] = [
   { value: 'all', label: 'All dots' },
