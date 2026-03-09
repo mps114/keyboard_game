@@ -141,6 +141,11 @@ body {
   margin-bottom: 1rem;
 }
 
+.streak-next {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
 .attempts-history {
   display: flex;
   flex-direction: column;
@@ -243,6 +248,54 @@ body {
 .dot-option-btn.active {
   border-color: #6aaa64;
   color: #6aaa64;
+}
+
+.streak-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 10;
+}
+
+.streak-modal {
+  width: min(420px, 100%);
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+  text-align: center;
+}
+
+.streak-modal h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #1f2328;
+}
+
+.streak-modal p {
+  font-size: 1.05rem;
+  color: #374151;
+  margin-bottom: 1.25rem;
+}
+
+.streak-close {
+  padding: 0.6rem 1.6rem;
+  border: none;
+  border-radius: 999px;
+  background: #6aaa64;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.streak-close:hover {
+  background: #7bb870;
 }
 
 @media (max-width: 700px) {

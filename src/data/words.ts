@@ -70,3 +70,10 @@ const CHALLENGE_WORDS: string[] = [
 export function pickChallengeWord(): string {
   return CHALLENGE_WORDS[Math.floor(Math.random() * CHALLENGE_WORDS.length)]
 }
+
+export function pickDailyWord(dayIndex: number): string {
+  const total = CHALLENGE_WORDS.length
+  if (total === 0) return ''
+  const normalized = ((dayIndex % total) + total) % total
+  return CHALLENGE_WORDS[normalized]
+}
