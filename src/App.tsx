@@ -54,6 +54,7 @@ export default function App() {
   const [dotMode, setDotMode] = useState<DotMode>(devMode ? 'first-last' : 'none')
   const [guess, setGuess] = useState<string[]>([])
   const [streakMessage, setStreakMessage] = useState<string | null>(null)
+  const [showIntro, setShowIntro] = useState(true)
 
   const gameOver = !devMode && !solved && attempts.length >= MAX_ATTEMPTS
   const remaining = MAX_ATTEMPTS - attempts.length
@@ -92,6 +93,10 @@ export default function App() {
     setGuess([])
     setStreakMessage(null)
   }, [devMode])
+
+  const handleCloseIntro = useCallback(() => {
+    setShowIntro(false)
+  }, [])
 
   return (
     <div className="app">
@@ -172,6 +177,24 @@ export default function App() {
             <p>{streakMessage}</p>
             <button className="streak-close" onClick={() => setStreakMessage(null)}>
               Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showIntro && (
+        <div className="intro-modal-backdrop" role="dialog" aria-live="polite">
+          <div className="intro-modal">
+            <h2>How to play</h2>
+            <p>
+              Guess the word or phrase by following the connected letters on the keyboard.
+            </p>
+            <div className="intro-demo" aria-hidden="true">
+              <Keyboard word="dog" dotMode="first-last" />
+            </div>
+            <p className="intro-example">For example: this word would be dog.</p>
+            <button className="intro-close" onClick={handleCloseIntro}>
+              Let&apos;s play
             </button>
           </div>
         </div>

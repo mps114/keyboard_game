@@ -298,6 +298,74 @@ body {
   background: #7bb870;
 }
 
+.intro-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 12;
+}
+
+.intro-modal {
+  width: min(560px, 100%);
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.25);
+  text-align: center;
+}
+
+.intro-modal h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
+  color: #1f2328;
+}
+
+.intro-modal p {
+  font-size: 1.05rem;
+  color: #374151;
+  margin-bottom: 1.4rem;
+}
+
+.intro-example {
+  margin-top: -0.4rem;
+  margin-bottom: 1.4rem;
+  font-weight: 600;
+}
+
+.intro-demo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.intro-demo .keyboard-frame {
+  --keyboard-scale: 0.7;
+}
+
+.intro-demo .keyboard-container {
+  margin: 0.5rem 0;
+}
+
+.intro-close {
+  padding: 0.7rem 1.8rem;
+  border: none;
+  border-radius: 999px;
+  background: #6aaa64;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.intro-close:hover {
+  background: #7bb870;
+}
+
 @media (max-width: 700px) {
   .app {
     padding: 1.5rem 0.75rem;
