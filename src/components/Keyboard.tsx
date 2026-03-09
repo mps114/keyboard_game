@@ -10,14 +10,14 @@ import keyPositions, {
 } from '../utils/keyboardLayout'
 import './Keyboard.css'
 
-export type DotMode = 'all' | 'first' | 'first-last' | 'none'
+export type DotMode = 'first' | 'last' | 'first-last' | 'none'
 
 interface KeyboardProps {
   word: string
   dotMode?: DotMode
 }
 
-export default function Keyboard({ word, dotMode = 'all' }: KeyboardProps) {
+export default function Keyboard({ word, dotMode = 'first-last' }: KeyboardProps) {
   const letters = word.toUpperCase().split('')
   const points = letters.map((l) => keyPositions[l]).filter(Boolean)
 
@@ -84,6 +84,7 @@ export default function Keyboard({ word, dotMode = 'all' }: KeyboardProps) {
 
               if (dotMode === 'none') return null
               if (dotMode === 'first' && !isFirst) return null
+              if (dotMode === 'last' && !isLast) return null
               if (dotMode === 'first-last' && !isFirst && !isLast) return null
 
               return (

@@ -11,9 +11,9 @@ import './App.css'
 const MAX_ATTEMPTS = 3
 
 const DOT_OPTIONS: { value: DotMode; label: string }[] = [
-  { value: 'all', label: 'All dots' },
   { value: 'first', label: 'First dot' },
-  { value: 'first-last', label: 'First & last' },
+  { value: 'last', label: 'Last dot' },
+  { value: 'first-last', label: 'Both dots' },
   { value: 'none', label: 'No dots' },
 ]
 
@@ -51,7 +51,7 @@ export default function App() {
   })
   const [attempts, setAttempts] = useState<string[]>(() => initialProgress?.attempts ?? [])
   const [solved, setSolved] = useState(() => initialProgress?.solved ?? false)
-  const [dotMode, setDotMode] = useState<DotMode>('all')
+  const [dotMode, setDotMode] = useState<DotMode>(devMode ? 'first-last' : 'none')
   const [guess, setGuess] = useState<string[]>([])
   const [streakMessage, setStreakMessage] = useState<string | null>(null)
 
@@ -105,19 +105,21 @@ export default function App() {
         {devMode && <span className="attempts-badge">DEV MODE</span>}
       </header>
 
-      <Keyboard word={word} dotMode={dotMode} />
+      <Keyboard word={word} dotMode={devMode ? dotMode : 'none'} />
 
-      <div className="dot-options">
-        {DOT_OPTIONS.map((opt) => (
-          <button
-            key={opt.value}
-            className={`dot-option-btn${dotMode === opt.value ? ' active' : ''}`}
-            onClick={() => setDotMode(opt.value)}
-          >
-            {opt.label}
-          </button>
-        ))}
-      </div>
+      {devMode && (
+        <div className="dot-options">
+          {DOT_OPTIONS.map((opt) => (
+            <button
+              key={opt.value}
+              className={`dot-option-btn${dotMode === opt.value ? ' active' : ''}`}
+              onClick={() => setDotMode(opt.value)}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      )}
 
       {attempts.length > 0 && (
         <div className="attempts-history">
